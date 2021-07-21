@@ -6,6 +6,7 @@ class DomaineSheet:
     def __init__(self, code,token=0):
         self.code=code
         domaineInfos=getDomaineDetails(code,token)
+        print(domaineInfos)
         self.libelle=domaineInfos[0]['domaineProfessionnel']['libelle']
         self.grandDomaine=domaineInfos[0]['domaineProfessionnel']['grandDomaine']['code']
         self.count=len(domaineInfos)
@@ -18,3 +19,8 @@ class DomaineSheet:
             listJob.append(job['code'])
         return listJob
         
+
+
+
+# domaine=DomaineSheet('11579')
+# print(domaine.listJob)
