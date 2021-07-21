@@ -15,8 +15,8 @@ class JobSheet:
         self.RIASECMajeur=jobinfos['metier']['riasecMajeur']
         self.RIASECMineur=jobinfos['metier']['riasecMineur']
         self.codeISCO=jobinfos['metier']['codeIsco']
-        self.Domaine=DomaineSheet(jobinfos['metier']['domaineProfessionnel']['code'],token)
-        self.GrandDomaine=GrandDomaineSheet(jobinfos['metier']['domaineProfessionnel']['grandDomaine']['code'],token)
+        self.domaine=jobinfos['metier']['domaineProfessionnel']['code']
+        self.grandDomaine=jobinfos['metier']['domaineProfessionnel']['grandDomaine']['code']
         self.environnementsTravail=self.getEnvironnementsTravail(jobinfos['environnementsTravail'])
         self.competencesDeBase=self.getCompetencesDeBase(jobinfos['competencesDeBase'])
 
@@ -33,5 +33,3 @@ class JobSheet:
             return listCompetence
 
 
-
-job=JobSheet('11158',getRomeToken())

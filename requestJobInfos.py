@@ -2,12 +2,24 @@ import requests
 from accessToken import getRomeToken
 import time
 
-def getLibelleJobCodeRome():
-    API_URL = 'https://api.emploi-store.fr/partenaire/rome/v1/appellation?q=N1103'
+def getLibelleJobCodeRome(code):
+    API_URL = 'https://api.emploi-store.fr/partenaire/rome/v1/appellation?q='+code
     token= getRomeToken()
     headers={'Authorization': 'Bearer '+token}
-    time.sleep(0.3)
     response = requests.get(API_URL,headers= headers)
+    if(response.status_code==429):
+        time.sleep(float(response.headers['Retry-After']))
+        response = requests.get(API_URL,headers= headers)
+    return response.json()
+
+def getLibelleJobCodeOGR(code):
+    API_URL = 'https://api.emploi-store.fr/partenaire/rome/v1/appellation?code='+code
+    token= getRomeToken()
+    headers={'Authorization': 'Bearer '+token}
+    response = requests.get(API_URL,headers= headers)
+    if(response.status_code==429):
+        time.sleep(float(response.headers['Retry-After']))
+        response = requests.get(API_URL,headers= headers)
     return response.json()
 
 
@@ -16,16 +28,19 @@ def getJobDetails(code,token=0):
     if(token==0):
         token= getRomeToken()
     headers={'Authorization': 'Bearer '+token}
-    time.sleep(0.3)
     response = requests.get(API_URL,headers= headers)
+    if(response.status_code==429):
+        time.sleep(float(response.headers['Retry-After']))
+        response = requests.get(API_URL,headers= headers)
     return response.json() 
+
+
 
 def getJobDetailsVTest(code,token=0):
     API_URL = 'https://api.emploi-store.fr/partenaire/rome/v1/metier/'+code
     if(token==0):
         token= getRomeToken()
     headers={'Authorization': 'Bearer '+token}
-    time.sleep(0.3)
     response = requests.get(API_URL,headers= headers)
     return response.json() 
 
@@ -35,7 +50,6 @@ def getSkillDetails(code,token=0):
     if(token==0):
         token= getRomeToken()
     headers={'Authorization': 'Bearer '+token}
-    time.sleep(0.3)
     response = requests.get(API_URL,headers= headers)
     if(response.status_code==429):
         time.sleep(float(response.headers['Retry-After']))
@@ -47,7 +61,6 @@ def getNoeudSkillDetails(code,token=0):
     if(token==0):
         token= getRomeToken()
     headers={'Authorization': 'Bearer '+token}
-    time.sleep(0.3)
     response = requests.get(API_URL,headers= headers)
     if(response.status_code==429):
         time.sleep(float(response.headers['Retry-After']))
@@ -60,7 +73,6 @@ def getRacineSkillDetails(code,token=0):
     if(token==0):
         token= getRomeToken()
     headers={'Authorization': 'Bearer '+token}
-    time.sleep(0.3)
     response = requests.get(API_URL,headers= headers)
     if(response.status_code==429):
         time.sleep(float(response.headers['Retry-After']))
@@ -73,7 +85,6 @@ def getDomaineDetails(code,token=0):
     if(token==0):
         token= getRomeToken()
     headers={'Authorization': 'Bearer '+token}
-    time.sleep(0.3)
     response = requests.get(API_URL,headers= headers)
     if(response.status_code==429):
         time.sleep(float(response.headers['Retry-After']))
@@ -85,7 +96,6 @@ def getGrandDomaineDetails(code,token=0):
     if(token==0):
         token= getRomeToken()
     headers={'Authorization': 'Bearer '+token}
-    time.sleep(0.3)
     response = requests.get(API_URL,headers= headers)
     if(response.status_code==429):
         time.sleep(float(response.headers['Retry-After']))
