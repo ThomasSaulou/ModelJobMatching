@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Simple Vue.js App</title>
+</head>
+<body>
+  <div id="app">
+    <h1>My First Vue.js App!</h1>
+    <p>Can't wait to build so many incredible things!</p>
+    {{message}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- import du CSS -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- import du JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+      message: 'Hello OpenClassrooms!', // String
+      answerToLife: 42, // Number
+      groceries: ['Apples', 'Bananas', 'Coconuts'], // Arrays
+      timeForLunch: false, // Boolean
+      info: { // Object
+        topic: 'VueJS',
+        length: 5
+      }
+    },
+    computed: {
+    totalAmount() {
+      return this.costOfApples + this.costOfBananas + this.costOfCoconuts
+    }
+  }
+    })
+  </script>
+</body>
+</html>
