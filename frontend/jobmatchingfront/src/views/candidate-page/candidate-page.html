@@ -1,0 +1,39 @@
+<div class="candidate-page">
+  <Navbar/>
+
+  <el-select  v-model="id" v-on:change="getCandidateByID(id)" placeholder="Select">
+    <el-option
+      v-for="item in candidates"
+      :key="item.id"
+      :label="item.name"
+      :value="item.id">
+    </el-option>
+  </el-select>
+
+<div class="contain"> 
+<el-card class="box-card">
+  <div slot="header" class="clearfix">
+    <span>{{candidate.name}}</span>
+    <el-button style="float: right; padding: 3px 0" type="text">Bouton</el-button>
+  </div>
+  
+  <div   class="text item">
+   <div v-for="job in candidate.JobExperience"> {{job.title}} {{job.score}} </div>
+  </div>
+  <div>
+    <apexchart ref="radarchart" width="400" type="radar" :options="options" :series="options.series"></apexchart>
+  </div>
+
+  <div   class="text item">
+    <div v-for="skill in skills"> {{skill.skillName}} {{skill.score}} </div>
+   </div>
+
+  </el-card>
+  {{candidate}}
+
+
+<div>
+
+</div>
+</div>
+</div>

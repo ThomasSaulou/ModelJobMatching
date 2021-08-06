@@ -4,11 +4,12 @@ from domaineSheet import DomaineSheet
 from grandDomaineSheet import GrandDomaineSheet
 from skillSheet import SkillSheet
 from accessToken import getRomeToken
+from requestBddV2 import getROMEJobByCode
 class JobSheet:
 
     def __init__(self, codeOGR, token=0):
         self.codeOGR = codeOGR
-        jobinfos=getJobDetails(codeOGR,token)
+        jobinfos=getROMEJobByCode(str(codeOGR))
         self.libelle=jobinfos['libelle']
         self.codeROME=jobinfos['metier']['code']
         self.libelleROME=jobinfos['metier']['libelle']

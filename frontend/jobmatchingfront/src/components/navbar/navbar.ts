@@ -1,7 +1,8 @@
 export default {
   data() {
     return {
-      isCollapse: false
+      isCollapse: false,
+      name:'navbar'
     };
   },
   methods: {

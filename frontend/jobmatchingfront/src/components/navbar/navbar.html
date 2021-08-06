@@ -1,15 +1,23 @@
 <div class="navbar">
-      <el-menu default-active="1" class="el-menu-vertical-demo" :collapse="isCollapse">
-        <el-menu-item index="1">
-          <template slot="title">
-            <i class="el-icon-goods"></i>
-            <span slot="title">Jobs</span>
-          </template>
+  <el-menu  class="el-menu-vertical-demo" :collapse="false">
+      <el-menu-item index="1">
+        <template slot="title">
+          <i class="el-icon-goods"></i>
+          <span slot="title"><router-link to="/jobsheet">Jobs </router-link></span>
+        </template>
 
-        </el-menu-item>
-        <el-menu-item index="2">
-          <i class="el-icon-user"></i>
-          <span slot="title">Candidates</span>
-        </el-menu-item>
-      </el-menu>
+      </el-menu-item>
+      <el-menu-item index="2">
+        <i class="el-icon-user"></i>
+        <span slot="title"><router-link to="/candidate">Candidates </router-link></span>
+      </el-menu-item>
+      <el-menu-item index="3">
+        <i class="el-icon-trophy"></i>
+        <span slot="title"><router-link to="/matching">Matching </router-link></span>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <i class="el-icon-plus"></i>
+        <span slot="title"><router-link to="/createcandidate">create candidate </router-link></span>
+      </el-menu-item>
+    </el-menu>
 </div>

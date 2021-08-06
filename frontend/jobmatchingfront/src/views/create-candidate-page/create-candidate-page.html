@@ -1,0 +1,39 @@
+<div class="create-candidate-page">
+  <Navbar/>
+  <div class="contain"> 
+    <div class="contain-ligne"> 
+<div> <el-input v-model="candidateName"
+  placeholder="Name"> </el-input>
+  </div>
+  <div> <el-input v-model="candidateId"
+    placeholder="ID"> </el-input>
+    </div>
+  </div>
+  <div v-for="job in jobList" class="contain-ligne">
+    <el-select v-model="job.jobCode"  placeholder="Select">
+      <el-option
+        v-for="item in jobs"
+        :key="item.code"
+        :label="item.name"
+        :value="item.code">
+      </el-option>
+    </el-select>
+    <div>  <el-input-number v-model="job.score" :min="1" :max="100"></el-input-number> 
+      </div>
+  </div>
+  <div> <el-button @click="addjob">MORE</el-button></div>
+
+<div class="contain-ligne"> 
+  R:<el-input-number v-model="RIASEC.R" :min="1" :max="100"></el-input-number>
+  I:<el-input-number v-model="RIASEC.I" :min="1" :max="100"></el-input-number>
+  A:<el-input-number v-model="RIASEC.A" :min="1" :max="100"></el-input-number>
+</div>
+<div class="contain-ligne"> 
+  S:<el-input-number v-model="RIASEC.S" :min="1" :max="100"></el-input-number>
+  E:<el-input-number v-model="RIASEC.E" :min="1" :max="100"></el-input-number>
+  C:<el-input-number v-model="RIASEC.C" :min="1" :max="100"></el-input-number> 
+ </div>
+<div> <el-button @click="sendCandidateToBdd"> Send</el-button></div>
+</div>
+{{RIASEC}}
+</div>

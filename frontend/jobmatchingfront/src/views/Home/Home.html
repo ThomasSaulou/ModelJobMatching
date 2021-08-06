@@ -1,41 +1,4 @@
 <div class="home">
-    <el-menu :default-active="activeItemIdx" class="el-menu-vertical-demo" :collapse="isCollapse">
-        <el-menu-item :index="1">
-          <template slot="title">
-            <i class="el-icon-goods"></i>
-            <span slot="title">Jobs</span>
-          </template>
-
-        </el-menu-item>
-        <el-menu-item :index="2">
-          <i class="el-icon-user"></i>
-          <span slot="title">Candidates</span>
-        </el-menu-item>
-      </el-menu>
-
-
-      <el-container class="page__main-frame">
-        <el-header class="page__header">
-          <div v-if="false"
-               class="page__menu-collapser"
-               @click="toggleMenuCollapse">
-            <i v-if="isMenuCollapsed"
-               class="el-icon-s-unfold"></i>
-            <i v-else
-               class="el-icon-s-fold"></i>
-          </div>
-          <span class="page__header__title">
-            {{name}}
-            {{index}}
-          </span>
-          <span class="page__spacer"></span>
-          <div class="page__header__actions">
-            <slot name="actions"></slot>
-          </div>
-        </el-header>
-    
-        <el-main class="page__content">
-          <slot></slot>
-        </el-main>
-      </el-container>
+  <Navbar/>
+   <el-button @click="getAllMissions">bjr</el-button> 
 </div>

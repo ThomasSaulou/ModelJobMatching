@@ -1,15 +1,16 @@
 from requestJobInfos import getSkillDetails
 from nodeSkillSheet import NodeSkillSheet
 from rootSkillSheet import RootSkillSheet
+from requestBdd import getSkillByCode
 class SkillSheet:
 
     def __init__(self, codeOGR):
         self.codeOGR=codeOGR
-        skillInfos=getSkillDetails(codeOGR)[0]
-        self.libelle=skillInfos['libelle']
-        self.noeudCompetence=skillInfos['noeudCompetence']['code']
-        self.racineCompetence=skillInfos['noeudCompetence']['racineCompetence']['code']
-        self.typeCompetence=skillInfos['typeCompetence']
-        if(self.typeCompetence=='savoir'):
+        skillInfos=getSkillByCode(codeOGR)
+        self.libelle=skillInfos['name']
+        self.noeudCompetence=skillInfos['node']
+        self.racineCompetence=skillInfos['root']
+        self.typeCompetence=skillInfos['type']
+        if(self.typeCompetence=='SavoirFaire'):
             self.riasecMineur=skillInfos['riasecMineur']
             self.riasecMajeur=skillInfos['riasecMajeur']

@@ -1,0 +1,92 @@
+<div class="job-sheet">
+  <Navbar/>
+
+    <el-select v-model="code" v-on:change="getJobSheet(code)" placeholder="Select">
+    <el-option
+      v-for="item in jobs"
+      :key="item.code"
+      :label="item.name"
+      :value="item.code">
+    </el-option>
+  </el-select>
+
+  <div class="contain"> 
+
+
+
+<el-card class="box-card">
+  <div slot="header" class="clearfix">
+    <span>{{jobSheet.libelle}}</span>
+    <el-button style="float: right; padding: 3px 0" type="text">Bouton</el-button>
+  </div>
+  <div class="small">
+    <bar-chart  :chart-data="datacollection"></bar-chart>
+    </div>
+  <div   class="text item">
+    Code : {{jobSheet.code}}
+  </div>
+  <div   class="text item">
+    Code ROME : {{jobSheet.metier.code}}
+  </div>
+  <div   class="text item">
+    Libellé : {{jobSheet.metier.libelle}}
+  </div>
+  <div   class="text item">
+    RIASEC  : {{jobSheet.metier.riasecMajeur}} | {{jobSheet.metier.riasecMineur}}
+  </div>
+
+  <div   class="text item">
+    Code Domaine  : {{jobSheet.metier.domaineProfessionnel.code}} 
+  </div>
+  <div   class="text item">
+    Domaine  : {{jobSheet.metier.domaineProfessionnel.libelle}} 
+  </div>
+  <div   class="text item">
+    Code Grand domaine  : {{jobSheet.metier.domaineProfessionnel.grandDomaine.code}} 
+  </div>
+  <div   class="text item">
+    Grand domaine  : {{jobSheet.metier.domaineProfessionnel.grandDomaine.libelle}} 
+  </div>
+</br>
+<div  v-for="skill in keySkills"  class="text item">
+  {{skill.name}} : {{skill.frequency}}
+</div>
+
+</br>
+  Environnements Travail: 
+  <div  v-for="env in jobSheet.environnementsTravail"  class="text item">
+    {{env.libelle}}
+  </div>
+</br>
+  Competences De Base: 
+  <div  v-for="skill in jobSheet.competencesDeBase"  class="text item">
+    {{skill.libelle}}
+  </div>
+  </br>
+  groupes Competences Specifiques
+  
+  <div  v-for="groupSkills in jobSheet.groupesCompetencesSpecifiques"  class="text item">
+  </br>
+    <div  v-for="skill in groupSkills.competences"  class="text item">
+  
+    {{skill.libelle}}
+  </div>
+</div>
+
+
+</el-card>
+<el-button @click="perCentRiasecSkills">test</el-button>
+
+<el-card class="box-card">
+    
+  <div slot="header" class="clearfix">
+    <span>{{jobSheet.libelle}}</span>
+    <el-button style="float: right; padding: 3px 0" type="text">Bouton</el-button>
+  </div>
+  <div v-for="key in Object.keys(jobSheet)"  class="text item">
+    {{key}}: {{jobSheet[key]}}
+  </div>
+</el-card>
+</div>
+
+</div>
