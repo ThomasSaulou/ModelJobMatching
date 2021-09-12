@@ -1,3 +1,4 @@
+from re import S
 from domaineSheet import DomaineSheet
 from grandDomaineSheet import GrandDomaineSheet
 from candidateProfil import Candidate
@@ -126,15 +127,83 @@ class Matching:
             
         return listKeySkills
 
+    def getScoreSoftSkills(self):
+        
+        candidateSoftSkills=self.candidate.softskills
+        jobSoftSkills=self.job.softskills
+        score=0
+        amount=0
+        count=0
+        for skill in jobSoftSkills:
+            for candidateskill in candidateSoftSkills:
+                if (skill['name']==candidateskill['name']):
+                    score+=float(skill['val'])*float(candidateskill['val'])
+                    amount+=float(skill['val'])
+        return score/amount
+
+    def getInterviewScore(self):
+        
+        interview=self.candidate.interview
+        videointerview=interview["video"]
+        return videointerview
+
+    def getRIASECMajeur(self):
+        riasec_majeur=self.job.RIASECMajeur
+
+        scoreRiasecMajeur=self.candidate.dictRIASEC[riasec_majeur]
+        return scoreRiasecMajeur 
+    
+    def getRIASECMineur(self):
+        riasec_mineur=self.job.RIASECMineur
+
+        scoreRiasecMineur=self.candidate.dictRIASEC[riasec_mineur]
+        return scoreRiasecMineur 
+    
+    def getRIASECScore(self):
+        skillsRIASEC= self.candidate.getCandidateRiasec()["SkillsRIASEC"]
+        jobPerCentRiasec=self.job.getPerCentRiasec()
+        listRiasec=["R","I","A","S","E","C"]
+        score=0
+        count=0
+        for riasec in listRiasec:
+            count+=float(jobPerCentRiasec[riasec])
+            divider=1
+            if(skillsRIASEC[riasec]["count"]!=0):
+                divider=skillsRIASEC[riasec]["count"]
+            
+            score+= int(skillsRIASEC[riasec]["score"]/divider)*float(jobPerCentRiasec[riasec])
+       
+        return score
+
+    def getKeySkillAVGScore(self):
+        keySkillsList= self.getScoreJobKeySkills()
+        print('prout',keySkillsList)
+        score=0
+        for skill in keySkillsList:
+            print(skill)
+            score+= skill['score']
+        print('scoreeee:',score)
+        return score
+    
+   
+
+
+
     def getJSONMatching(self):
         return {
             'globalScore':self.getScore(),
+            'softSkillScore':self.getScoreSoftSkills(),
             'scoreFromROMEJobs':self.getScoreSameROME(),
             'secondDegreeJobScore':self.getScoreJOBSecondDegree(),
             'thirdDegreeJobScore':self.getScoreJOBThirdDegree(),
             'skillScore':self.getScoreFromSkillsFirstDegree(),
             'candidateRIASEC':self.candidate.getCandidateRiasec(),
             'keySkills':self.getScoreJobKeySkills(),
+            'getInterviewScore':self.getInterviewScore(),
+            'RIASEC_majeur': self.getRIASECMajeur(),
+            'RIASEC_mineur': self.getRIASECMineur(),
+            'Skills_Riasec': self.getRIASECScore(),
+            'Skill_Key_AVG_Score': self.getKeySkillAVGScore()
           
         }
 

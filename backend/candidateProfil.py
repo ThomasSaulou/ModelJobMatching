@@ -3,7 +3,7 @@ from candidateRIASEC import CandidateRIASEC
 
 
 class Candidate:
-    def __init__(self, listJobScore, RIASEC,name,id):
+    def __init__(self, listJobScore, RIASEC,name,id,softskills,interview):
         self.name=name,
         self.id=id
         self.jobScore=listJobScore
@@ -11,6 +11,8 @@ class Candidate:
         self.dictRIASEC=RIASEC
         self.RIASEC=CandidateRIASEC(self.candidateJobSheet,RIASEC)
         self.skills=self.calculateListSkillsScore()
+        self.softskills=softskills
+        self.interview=interview
     
     
     def getJobSheets(self): 
@@ -84,6 +86,7 @@ class Candidate:
             'name':self.name,
             'id':self.id,
             'JobExperience':self.getCandidateJobSheetInfo(),
+            'softskills':self.softskills,
             'RIASEC':{
                 'R':self.RIASEC.getRIASEC('R'),
                 'I':self.RIASEC.getRIASEC('I'),
@@ -101,6 +104,7 @@ class Candidate:
                 'C':self.RIASEC.getJobRIASEC('C'),
             },
             'skills':self.skills,
+            'interview':self.interview,
         }
         
 

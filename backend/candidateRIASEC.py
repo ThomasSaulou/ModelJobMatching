@@ -14,7 +14,6 @@ class CandidateRIASEC:
             jobSheetList=self.candidateJobSheet
             objectRiasec={'R':{'score':0,'count':0},'I':{'score':0,'count':0},'A':{'score':0,'count':0},'S':{'score':0,'count':0},'E':{'score':0,'count':0},'C':{'score':0,'count':0}}
             for job in jobSheetList:
-                print('YOYOYOYO')
                 objectRiasec[job['job'].RIASECMajeur]['score']+=job['score']
                 objectRiasec[job['job'].RIASECMajeur]['count']+=1
             

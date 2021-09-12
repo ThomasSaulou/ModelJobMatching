@@ -1,5 +1,5 @@
 import requests 
-from accessToken import getRomeToken
+from accessToken import getRomeToken, getRomeTokenSoftSkills
 import time
 
 def getLibelleJobCodeRome(code):
@@ -101,4 +101,18 @@ def getGrandDomaineDetails(code,token=0):
         time.sleep(float(response.headers['Retry-After']))
         response = requests.get(API_URL,headers= headers)
     return response.json() 
+
+
+def getSoftSkills(code,token=0):
+    API_URL = 'https://api.emploi-store.fr/partenaire/matchviasoftskills/v1/professions/job_skills?code=A1201'
+    if(token==0):
+        token= getRomeTokenSoftSkills()
+    headers={'Authorization': 'Bearer '+token}
+    response = requests.get(API_URL,headers= headers)
+    print(response)
+    if(response.status_code==429):
+        time.sleep(float(response.headers['Retry-After']))
+        response = requests.get(API_URL,headers= headers)
+
+    return response.json()
 

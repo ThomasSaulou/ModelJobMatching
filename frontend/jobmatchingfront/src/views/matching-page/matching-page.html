@@ -27,60 +27,12 @@
 </div>
 </div>
 
-<el-card v-if="isMatchLoaded" class="box-card">
-  <div slot="header" class="clearfix">
-    <span>Match Result</span>
-    <el-button style="float: right; padding: 3px 0" type="text">Bouton</el-button>
-  </div>
-  <div   class="text item">
-    Même métier similaire: {{matchingResult.scoreFromROMEJobs.nbDifferentJobs}} / {{matchingResult.scoreFromROMEJobs.nbJobInRome}} SCORE {{matchingResult.scoreFromROMEJobs.score}}
-    <br/>
-    Même domaine: {{matchingResult.secondDegreeJobScore.distinctJobs}} / {{matchingResult.secondDegreeJobScore.nbJobInDomaine}} SCORE: {{matchingResult.secondDegreeJobScore.score}}
-  <br/>
-  Même grand domaine: {{matchingResult.thirdDegreeJobScore.distinctDomaine}} / {{matchingResult.thirdDegreeJobScore.nbJobInGrandDomaine}} SCORE: {{matchingResult.thirdDegreeJobScore.score}}
-  </div>
 
-  <div   class="text item">
-    Pour ce metier les compétences cléfs sont : 
-    <div v-for=" skill in matchingResult.keySkills">{{skill.name}} importance {{skill.frequence}} score obtenu : {{skill.score}}*{{skill.count}}</div>
-    </div>
-
-    <div   class="text item">
-      RIASEC : <br/>
-      R: {{matchingResult.candidateRIASEC.RIASEC.R}} ,
-      I: {{matchingResult.candidateRIASEC.RIASEC.I}},
-      A: {{matchingResult.candidateRIASEC.RIASEC.A}},
-      S: {{matchingResult.candidateRIASEC.RIASEC.S}},
-      E: {{matchingResult.candidateRIASEC.RIASEC.E}},
-      C {{matchingResult.candidateRIASEC.RIASEC.C}},
-      </div>
-      <div   class="text item">
-        JOB  RIASEC : <br/>
-         R: {{matchingResult.candidateRIASEC.JobRIASEC.R.score}} x{{matchingResult.candidateRIASEC.JobRIASEC.R.count}}  ,
-         I: {{matchingResult.candidateRIASEC.JobRIASEC.I.score}} x{{matchingResult.candidateRIASEC.JobRIASEC.I.count}} ,
-         A: {{matchingResult.candidateRIASEC.JobRIASEC.A.score}} x{{matchingResult.candidateRIASEC.JobRIASEC.A.count}} ,
-         S: {{matchingResult.candidateRIASEC.JobRIASEC.S.score}} x{{matchingResult.candidateRIASEC.JobRIASEC.S.count}} ,
-         E: {{matchingResult.candidateRIASEC.JobRIASEC.E.score}} x{{matchingResult.candidateRIASEC.JobRIASEC.E.count}} ,
-         C {{matchingResult.candidateRIASEC.JobRIASEC.C.score}} x{{matchingResult.candidateRIASEC.JobRIASEC.C.count}} ,
-         </div>
-
-        <div   class="text item">
-          Skills  RIASEC : <br/>
-           R: {{matchingResult.candidateRIASEC.SkillsRIASEC.R.score}} x{{matchingResult.candidateRIASEC.SkillsRIASEC.R.count}}  ,
-           I: {{matchingResult.candidateRIASEC.SkillsRIASEC.I.score}} x{{matchingResult.candidateRIASEC.SkillsRIASEC.I.count}} ,
-           A: {{matchingResult.candidateRIASEC.SkillsRIASEC.A.score}} x{{matchingResult.candidateRIASEC.SkillsRIASEC.A.count}} ,
-           S: {{matchingResult.candidateRIASEC.SkillsRIASEC.S.score}} x{{matchingResult.candidateRIASEC.SkillsRIASEC.S.count}} ,
-           E: {{matchingResult.candidateRIASEC.SkillsRIASEC.E.score}} x{{matchingResult.candidateRIASEC.SkillsRIASEC.E.count}} ,
-           C {{matchingResult.candidateRIASEC.SkillsRIASEC.C.score}} x{{matchingResult.candidateRIASEC.SkillsRIASEC.C.count}} ,
-           </div>
-
-
-
-  <div   class="text item">
-    {{matchingResult}}
-  </div>
-  </el-card>
-  
+<Matching :name="name" :table-data-jobs="tableDataJobs" 
+:table-data-skills="tableDataSkills"
+:table-data-riasec="tableDataRIASEC"
+:table-data-emotion="tableDataEmotion"
+:options-spider-graph="optionsSpiderGraph"/>
 
 </div>
 </div>

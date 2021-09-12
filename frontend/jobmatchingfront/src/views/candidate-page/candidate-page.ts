@@ -31,11 +31,11 @@ export default {
 				series: [
 				{
 					name: "Perso RIASEC",
-					data: [45, 52, 38, 24, 33, 10]
+					data: [75, 52, 68, 24, 33, 90]
 				},
 				{
 					name: "Job RIASEC",
-					data: [45, 52, 38, 24, 33, 10]
+					data: [45, 72, 38, 54, 33, 60]
 				}
 				
 				],

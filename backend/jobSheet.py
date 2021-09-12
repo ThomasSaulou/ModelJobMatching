@@ -20,6 +20,7 @@ class JobSheet:
         self.grandDomaine=jobinfos['metier']['domaineProfessionnel']['grandDomaine']['code']
         self.environnementsTravail=self.getEnvironnementsTravail(jobinfos['environnementsTravail'])
         self.competencesDeBase=self.getCompetencesDeBase(jobinfos['competencesDeBase'])
+        self.softskills=jobinfos['softskills']
 
     def getEnvironnementsTravail(self,environnementsTravail):
             listEnvironnement=[]
@@ -30,7 +31,34 @@ class JobSheet:
     def getCompetencesDeBase(self,competencesDeBase):
             listCompetence=[]
             for competence in competencesDeBase:
-                listCompetence.append({'code':competence['code'],'skill':SkillSheet(competence['code']),'competenceCle':competence['competenceCle'],'frequence':competence['frequence']})
+                skillsheet=SkillSheet(competence['code'])
+                listCompetence.append({'code':competence['code'],'skill':skillsheet,'competenceCle':competence['competenceCle'],'frequence':competence['frequence']})
             return listCompetence
 
 
+
+    def getPerCentRiasec(self):
+            riasec={
+                "R":0,
+                "I":0,
+                "A":0,
+                "S":0,
+                "E":0,
+                "C":0,
+            }
+            total=0
+            for competence in self.competencesDeBase:
+                skillsheet=SkillSheet(competence['code'])
+                if (skillsheet.typeCompetence=='SavoirFaire'):
+                    riasec[skillsheet.riasecMajeur]+=1
+                    total+=1
+            riasec["R"]/=total
+            riasec["I"]/=total
+            riasec["A"]/=total
+            riasec["S"]/=total
+            riasec["E"]/=total
+            riasec["C"]/=total
+            print('riri',riasec)
+
+
+            return riasec

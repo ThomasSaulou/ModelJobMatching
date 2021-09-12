@@ -1,0 +1,124 @@
+<div class="candidate-job-match">
+  <el-card class="box-card">
+
+    <div class="container1">
+      <div class="container2" > 
+        <div class="name">{{name}}</div>
+
+  <el-card class="box-card">
+    <div> Émotions durant l'entretien</div>
+    <el-table
+    :data="tableDataEmotion"
+    style="width: 100%"
+    :row-class-name="tableRowClassName(tableDataEmotion)">
+    <el-table-column
+      prop="happy"
+      label="😃"
+      width="70">
+    </el-table-column>
+    <el-table-column
+      prop="neutre"
+      label="😐"
+      width="70">
+    </el-table-column>
+    <el-table-column
+    prop="sad"
+    label="😟"
+    width="70">
+  </el-table-column>
+  </el-table>
+  </el-card>
+</div>
+
+
+
+<el-card class="box-card">
+  <div style="display:flex; flex-direction: column;">
+    <div style="display:flex; justify-content: center;">Candidat RIASEC</div>
+    <apexchart ref="radarchart" width="300" type="radar" :options="optionsSpiderGraph" :series="optionsSpiderGraph.series"></apexchart>
+  </div>
+  </el-card>
+  <el-card class="box-card">
+    <el-table
+    :data="tableDataRiasec"
+    style="width: 100%"
+    :row-class-name="tableRowClassName">
+    <el-table-column
+      prop="RIASEC"
+      label="RIASEC"
+      width="95">
+    </el-table-column>
+    <el-table-column
+      prop="riasecScore"
+      label="Score"
+      width="80">
+    </el-table-column>
+  </el-table>
+  </el-card>
+</div>
+<div class="container1">
+
+  <el-card class="box-card">
+    
+
+
+
+    <el-table
+    :data="tableDataJobs"
+    style="width: 100%"
+    :row-class-name="tableRowClassName">
+    <el-table-column
+      prop="jobExperience"
+      label="job Exp"
+      width="100">
+    </el-table-column>
+    <el-table-column
+      prop="amount"
+      label="Amount"
+      width="80">
+    </el-table-column>
+    <el-table-column
+      prop="score"
+      label="Score"
+      width="80">
+    </el-table-column>
+  </el-table>
+  </el-card>
+
+  <el-card class="box-card">
+    <el-table
+    :data="tableDataSkills"
+    style="width: 100%"
+    :row-class-name="tableRowClassName">
+    <el-table-column
+      prop="skillExperience"
+      label="skill Experience"
+      width="140">
+    </el-table-column>
+    <el-table-column
+      prop="amount"
+      label="skills done / total skill to know"
+      width="125">
+    </el-table-column>
+    <el-table-column
+      prop="score"
+      label="Score"
+      width="80">
+    </el-table-column>
+    </el-table>
+  </el-card>
+  
+</div>
+
+  </el-card>
+
+  <el-card style="display:flex; justify-content: center;">
+    <div> <h3>Give your opinion on this match</h3> </div>
+    <div style=" display:flex; justify-content: center;" class="container1">  
+      <el-card style="background-color: #4b658794;" class="box-card">
+      <el-input-number  placeholder="score/100">  
+      </el-input-number>
+      </el-card> 
+      </div>
+  </el-card>
+</div>

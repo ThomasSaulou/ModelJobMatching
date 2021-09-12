@@ -33,7 +33,7 @@ def getAllJobs():
 @app.route("/candidate/<id>", methods =['GET'])
 def candidateByID(id):
     candidate=getCandidateByID(str(id))
-    objectCandidate=Candidate(candidate['listJobScore'],candidate['RIASEC'],candidate['name'],candidate['id'] )
+    objectCandidate=Candidate(candidate['listJobScore'],candidate['RIASEC'],candidate['name'],candidate['id'],candidate['softskills'],candidate['interview']  )
     return jsonify({'result':objectCandidate.getJSONProfil()})
 
 
@@ -46,10 +46,8 @@ def getAllCandidates():
 @app.route("/matching", methods=['GET', 'POST'])
 def getMatchingResult():
     content = request.json
-    print(int(content['candidateId']))
     candidate=getCandidateByID(str(content['candidateId']))
-    print(candidate)
-    objectCandidate=Candidate(candidate['listJobScore'],candidate['RIASEC'],candidate['name'],candidate['id'] )
+    objectCandidate=Candidate(candidate['listJobScore'],candidate['RIASEC'],candidate['name'],candidate['id'],candidate['softskills'],candidate['interview'] )
     job=JobSheet(content['missionCode'])  
     matching=Matching(objectCandidate,job)
     return jsonify({'result':matching.getJSONMatching()})
